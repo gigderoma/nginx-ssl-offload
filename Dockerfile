@@ -2,7 +2,6 @@
 # docker build -t <image name> nginx 
 # docker run -p 2080:2080 <image name>
 
-
 # Build openssl image to fix nginx init issue
 ARG ARTIFACTORY_REMOTE=
 
