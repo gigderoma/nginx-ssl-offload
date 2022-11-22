@@ -1,5 +1,4 @@
-   
-      name: Build and Deploy to IKS
+name: Build and Deploy to IKS
 
 on:
   push:
@@ -8,7 +7,6 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  GITHUB_SHA: ${{ github.sha }}
   REGISTRY_HOSTNAME: gigderoma
   IMAGE_NAME: ${{ secrets.DOCKER_HUB_REPOSITORY }}
 
@@ -26,7 +24,7 @@ jobs:
     # Build the Docker image
     - name: Build with Docker
       run: |
-        docker build -t "$REGISTRY_HOSTNAME"/"$IMAGE_NAME":"$GITHUB_SHA" \
+        docker build -t "$REGISTRY_HOSTNAME"/"$IMAGE_NAME":"latest" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" .
     - name: log into registry ${{ env.REGISTRY_HOSTNAME }}
@@ -38,4 +36,4 @@ jobs:
     # Push the image to Docker Container Registry
     - name: Push the image to docker.io
       run: |
-        docker push $REGISTRY_HOSTNAME/$IMAGE_NAME:$GITHUB_SHA
+        docker push $REGISTRY_HOSTNAME/$IMAGE_NAME:latest
