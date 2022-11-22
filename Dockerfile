@@ -20,8 +20,8 @@ COPY openssl.cnf /etc/ssl/openssl.cnf
 # Add nginx configure file, add 2080 port for test; add new html welcome file
 COPY ssleng.index.html /usr/share/nginx/html
 #nginx needs to explicitly setup which environment variables are allowed
-COPY nginx-env.txt /tmp/nginx.conf
-RUN cat /etc/nginx/nginx.conf >> /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf.gig /tmp/nginx.conf
+RUN  mv /tmp/nginx.conf /etc/nginx/nginx.conf
 COPY *.conf /etc/nginx/conf.d/
 
 # start.sh create new certificate in cert folder and key when running docker run
