@@ -1,6 +1,6 @@
 name: Build and Deploy to IKS
 
-on:[push]
+on:
   push:
     branches:
       - master
