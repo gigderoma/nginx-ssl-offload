@@ -3,10 +3,11 @@
 # docker run -p 2080:2080 <image name>
 # Build openssl image to fix nginx init issue
 
-ARG ARTIFACTORY_REMOTE=
+#ARG ARTIFACTORY_REMOTE=
 
-FROM ${ARTIFACTORY_REMOTE}nginx:1.17.4
-ENV DEBIAN_FRONTEND noninteractive
+#FROM ${ARTIFACTORY_REMOTE}nginx:1.17.4
+FROM nginxinc/nginx-unprivileged:stable-alpine
+#ENV DEBIAN_FRONTEND noninteractive
 
 COPY *.deb /tmp/
 RUN apt update; \
