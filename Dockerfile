@@ -6,7 +6,7 @@
 #ARG ARTIFACTORY_REMOTE=
 
 #FROM ${ARTIFACTORY_REMOTE}nginx:1.17.4
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM ubuntu/nginx
 #ENV DEBIAN_FRONTEND noninteractive
 
 COPY *.deb /tmp/
