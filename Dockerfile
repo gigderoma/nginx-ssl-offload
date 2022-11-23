@@ -11,7 +11,7 @@ FROM ubuntu/nginx
 
 COPY *.deb /tmp/
 RUN apt update; \
-	apt install -y libssl1.1 openssl /tmp/*$(uname -m | sed -e 's/x86_64/amd64/').deb;
+	apt install -y libssl3 openssl /tmp/*$(uname -m | sed -e 's/x86_64/amd64/').deb;
 
 RUN ldconfig
 
