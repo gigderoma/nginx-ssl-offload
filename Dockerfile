@@ -3,15 +3,15 @@
 # docker run -p 2080:2080 <image name>
 # Build openssl image to fix nginx init issue
 
-#ARG ARTIFACTORY_REMOTE=
+ARG ARTIFACTORY_REMOTE=
 
-#FROM ${ARTIFACTORY_REMOTE}nginx:1.17.4
-FROM ubuntu/nginx
-#ENV DEBIAN_FRONTEND noninteractive
+FROM ${ARTIFACTORY_REMOTE}nginx:1.17.4
+
+ENV DEBIAN_FRONTEND noninteractive
 
 COPY *.deb /tmp/
 RUN apt update; \
-	apt install -y libssl3 openssl /tmp/*$(uname -m | sed -e 's/x86_64/amd64/').deb;
+	apt install -y libssl1.1 openssl /tmp/*$(uname -m | sed -e 's/x86_64/amd64/').deb;
 
 RUN ldconfig
 
